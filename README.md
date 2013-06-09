@@ -5,7 +5,9 @@
 
 You may want to skip to [Installation](#Installation).
 
-* You can visit sblog [here](http://songguo.sinaapp.com/blog).
+## Demo
+
+You can visit sblog [here](http://songguo.sinaapp.com/blog).
 
 ## Functions or Features added
 
