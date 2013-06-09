@@ -1,0 +1,35 @@
+<div id="header">
+    <div id="header-top">
+        <div id="blog-title">
+            {{ blog_title }}
+        </div>
+        <div id="blog-sub">
+            Enjoy yourself -- It's later than you think. 
+        </div>
+    </div>
+    <div id="nav">
+        <ul>
+            <li><a href="/blog">HOME</a></li>
+            <li><a href="/blog/archive">ARCHIVE</a></li>
+            <li>
+                <span>TAGS</span>
+                <ul>
+                    {% for t in tags %}
+                        <li><a href="/blog/tag/{{ t.name }}"><span>{{ t.name }}</span>({{ t.posts_count }})</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+                
+            <li>
+	    <span>NAVIGATION</span>
+              <ul>
+		<li><a href="/blog/latest">latest</a></li>
+		<li><a href="/blog/tagcloud">tagcloud</a></li>
+		<li><a href="/blog/archive">archive</a></li>
+		<li><a href="{{github_link}}" target="_blank">github</a></li>
+	      </ul>
+	    </li>
+            <li><a href="/blog/about">ABOUT</a></li>
+        </ul>
+    </div>
+</div>

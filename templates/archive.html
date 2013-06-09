@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="index">
+
+    {% for year, month_posts in posts %}
+        <h2>{{ year }}</h2>
+        {% for month, posts in month_posts %}
+            <h3>{{ month }}</h3>
+            <ul>
+            {% for p in posts %}
+                <li>
+                    <span>{{ p.create_at|format_date }}</span>
+                    <span><a title="{{p.id}}" href="/blog/{{p.create_at.year}}/{{p.create_at.month}}/{{p.create_at.day}}/{{ p.slug }}">{{ p.title }}</a></span>
+                    <span class="view_count">{{ p.view_count }}</span>
+                </li>
+            {% endfor %}
+            </ul>
+        {% endfor %}
+    {% endfor %}
+    
+    </div>
+
+{% endblock %}

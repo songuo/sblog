@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://markdownlivepreview.com/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="keywords" content="markdown,live,preview,songguo,blog">
+
+    <link rel="stylesheet" type="text/css" href="/static/markdown_edit_preview/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/markdown_edit_preview/github.css">
+    
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+
+    <script type="text/javascript" src="/static/markdown_edit_preview/jquery.autosize-min.js"></script>
+    <script type="text/javascript" src="/static/markdown_edit_preview/markdown.js"></script>
+
+    <title>Markdown Live Preview</title>
+  </head>
+  <body>
+
+    <div id="header" style="position: static; top: -36px; z-index: 100;">
+      <h1><a href=""><img src="/static/markdown_edit_preview/logo.png" width="306" height="20" alt="Markdown Live Preview"></a></h1>
+      <ul id="menu">
+        <a href="javascript:void(null);" data-menu-id="edit" class="edit active"><li>Edit Markdown</li></a>
+        <a href="javascript:void(null);" class="preview" data-menu-id="preview"><li>HTML Preview</li></a>
+      </ul>
+    </div>
+
+    <div id="container" style="margin-top: 0px;">
+      <strong>Title: </strong><input type="text" id="blog_title" name="blog_title" style="width: 915px;">
+      <strong>Security Key: </strong><input type="password" id="blog_key" name="blog_key" style="width: 850px;">
+      <div id="content" class="section">
+
+        <div id="edit" class="mode" style="display: block;">
+          <ul class="submenu">
+            <a href="javascript:void(null);" id="clearButton"><li>clear</li></a>
+            <a href="javascript:void(null);" id="postButton"><li>post</li></a>
+            <a href="/blog" id="homeButton"><li>HOME</li></a>
+          </ul>
+          <div class="content">
+
+	    <form id="ff" target="_blank" action="/blog/post" method="POST">
+         	<input id="title" name="title" type="hidden"/>
+            	<input id="key" name="key" type="hidden"/>
+	        <input id="code" name="code" value="{{code}}" type="hidden">
+	        <input id="tags" name="tags" type="hidden" />
+                <textarea name="markdown" id="markdown" style="overflow: hidden; word-wrap: break-word; resize: none; height: 400px;" >  </textarea>
+	    </form>
+	    
+          </div>
+        </div>
+        <div id="preview" class="mode" style="display: none;">
+          <div id="output" class="content markdown-body"></div>
+        </div>
+      </div>
+      <strong>Tags: </strong><input type="text" id="blog_tags" name="blog_tags" style="width: 700px;">(Seprated by commas.)
+    </div>
+  
+
+</body>
+
+<script type="bogus" id="multilines">
+{{example}}
+</script>
+
+<script type="text/javascript">
+
+//var example = "";
+var title = "{{title}}";
+var tags = "{{tags}}";
+    
+$(function() {
+  var currentMode = 'edit';
+  var container = $('#container');
+  var header = $('#header');
+  var headerHeight = header.outerHeight();
+  var titleHeight = $('#header h1').outerHeight();
+  var fixedTop = -titleHeight;
+  var scrollTops = {
+    'edit' : 0,
+    'preview' : 0
+  };
+
+  var isEdited = false;
+
+  $(window).scroll(function() {
+    var scrollTop = $(window).scrollTop();
+    scrollTops[currentMode] = scrollTop;
+    if ((scrollTop > titleHeight)) {
+      header.css({
+        'position' : 'fixed',
+        'top' : fixedTop + 'px',
+        'z-index' : '100'
+      });
+
+      container.css({
+        'margin-top'  : headerHeight + 'px'
+      });
+
+    } else {
+      header.css('position', 'static');
+      container.css({
+        'margin-top'  : 0
+      });
+    }
+  });
+
+  $('#blog_title').val(title);
+  $('#blog_tags').val(tags);
+  
+  $('#markdown').val($('#multilines').html().trim());
+  $('#output').html(markdown.toHTML($('#multilines').html()));
+  $('#markdown').bind('keyup', function() {
+    isEdited = true;
+    $('#output').html(markdown.toHTML($('#markdown').val()));
+  });
+
+  //menu
+  var menuItems = $('#menu a');
+  menuItems.click(function(event) {
+    event.preventDefault();
+
+    menuItems.removeClass('active');
+    var sender = $(event.currentTarget);
+    sender.addClass('active');
+
+    $('#content .mode').hide();
+    var menuId = sender.data('menuId');
+    currentMode = menuId;
+    $('#' + menuId).show();
+    $(window).scrollTop(scrollTops[currentMode]);
+
+  });
+
+  //reference
+  $("table#reference tr td:odd").each(function(index, element) {
+    var self = $(element);
+    if (self.html() === "") {
+      self.html(markdown.toHTML(self.siblings().html()));
+    }
+  });
+
+  //clear
+  $('#clearButton').click(function(event) {
+    event.preventDefault();
+    if (window.confirm('Are you sure you want to delete?')) {
+      $('#markdown').val('');
+      $('#output').html('');
+    }
+  });
+
+  //post
+  $('#postButton').click(function(event) {
+    event.preventDefault();
+   var form = $('#ff');
+   document.getElementById('markdown').value = $('#markdown').val()
+   document.getElementById('title').value = $('#blog_title').val()
+   document.getElementById('tags').value = $('#blog_tags').val()
+   document.getElementById('key').value = $('#blog_key').val()
+   form.submit();
+     
+  });
+
+  //autoresize
+  $('textarea').autosize();
+  $('#markdown').focus();
+
+  //leave
+  $(window).bind('beforeunload', function() {
+    if (isEdited) {
+      return 'Are you sure you want to leave? Your changes will be lost.';
+    }
+  });
+});
+
+</script>
+
+    </html>

@@ -1,0 +1,43 @@
+
+    <div>
+        <div class="post-left">
+            <div class="group">
+	      <p>{{post.create_at.strftime("%Y-%m-%d %H:%M:%S")}}</p>
+            </div>
+            
+            <div class="group">
+                <p class="focus">views: {{ post.view_count }}</p>
+            </div>
+        </div>
+        
+        <div class="post-right">
+            <div class="post-title">
+                <h2><strong>
+                    {% if index %}
+                        <a href="/blog/{{post.create_at.year}}/{{ post.create_at.month }}/{{post.create_at.day}}/{{post.slug}}">{{ post.title }}</a>
+                    {% else %}
+                        {{ post.title }}
+                    {% endif %}
+                </strong></h2>
+            </div>
+
+	    <div class="post-tag">
+                 <em><strong>tags: </strong>
+	       {% for t in post.tags %}
+                    <a href="/blog/tag/{{ t.name }}">{{ t.name }}</a>,
+                {% endfor %}
+	      </em>
+	        <a href="/blog/editcheck/{{post.id}}">Edit?</a>
+	    </div>
+            
+            <div class="post-content">
+              {% if index %}
+	        {{ post.excerpt }}
+	      {% else %}
+                {{ post.content }}
+	      {% endif %}
+            </div>
+        </div>
+        <div class="clear-both"></div>
+    
+    </div>

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>Jumping...</title>
+%if p:
+<meta http-equiv="refresh" content="2; URL=/blog/{{p.create_at.year}}/{{p.create_at.month}}/{{p.create_at.day}}/{{p.slug}}">
+<meta name="keywords" content="automatic redirection">
+%end
+</head>
+
+<body>
+%if p:
+<h1>Jumping</h1>
+<h3>If your browser doesn't automatically go there within a few seconds, 
+you may want to go to 
+<a href="/blog/{{p.create_at.year}}/{{p.create_at.month}}/{{p.create_at.day}}/{{p.slug}}">the article </a>you just posted manually.
+</h3>
+%else:
+<h2>{{msg}}</h2>
+%end
+
+<hr>
+<address><a href="mailto:songguo.hit@gmail.com ">Guo Song</a></address>
+<!-- hhmts start --> Last modified: Fri Jun  7 20:05:40 CST 2013 <!-- hhmts end -->
+</body> </html>

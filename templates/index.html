@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="index">
+        {% for post in posts %}
+            <div class="index-post">
+                {% include "_post.html" %}
+            </div>
+        {% endfor %}
+        <div id="index-more">
+	  {% if is_by_year %}
+	    <h3><a href="/blog/archive/{{is_by_year}}">more</a></h3>
+	  {% else %}
+            <h3><a href="/blog/archive">more</a></h3>
+	  {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+@font-face {
+		    font-family: 'PTSans';
+		    src: url('../font/webfonts/ptsans/pt_sans-web-regular-webfont-2.eot');
+		    src: url('../font/webfonts/ptsans/pt_sans-web-regular-webfont-2.eot?iefix') format('eot'),
+		         url('../font/webfonts/ptsans/pt_sans-web-regular-webfont-2.woff') format('woff'),
+		         url('../font/webfonts/ptsans/pt_sans-web-regular-webfont-2.ttf') format('truetype'),
+		         url('../font/webfonts/ptsans/pt_sans-web-regular-webfont-2.svg#PTSansRegular') format('svg');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+	
+		a.tag{
+			font-family: 'PTSans';
+			text-decoration: none;			
+		}
+		
+		li.cnt{
+			overflow: hidden;
+		    position: absolute;
+			display: block;	
+		}
+		
+		ul.cloud{
+			position: relative;
+			display: block;
+			width: 349px;
+			height: 543.95px;
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		
+		a.c3{color:#e85f4d;}
+		a.c3:hover{
+		    color:#f6c1ba;
+		    text-decoration:none;
+		  }
+		a.c1{color:#ffc051;}        
+		a.c1:hover{
+		    text-decoration:none;
+		    color:#fff0d7;}
+		a.c0{color:#ff8939;}
+		a.c0:hover{
+		    text-decoration:none;
+		    color:#ffd3b5;}
+		a.c7{
+		    text-decoration:none;
+		    color:#590051;}        
+		a.c7:hover{
+		    text-decoration:none;
+		    color:#7c0071;}
+		a.c5{color:#b52841;}
+		a.c5:hover{
+		    text-decoration:none;
+		    color:#da5a71;}
